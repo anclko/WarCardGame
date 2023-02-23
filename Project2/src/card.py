@@ -13,7 +13,17 @@ class Card:
     @property
     def suit(self):
         return self._suit
-    
+
     @property
     def value(self):
         return self._value
+
+    # ---- CARD ACTIONS ---- #
+
+    def show(self):
+        card_value = self._value
+        card_suit = self._suit.description.capitalize()
+        suit_symbol = self._suit.symbol
+
+        # condition if card is "special" then print the name of card
+        # suit and symbol. For other card, just their value suit and symbol

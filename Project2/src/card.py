@@ -27,3 +27,8 @@ class Card:
 
         # condition if card is "special" then print the name of card
         # suit and symbol. For other card, just their value suit and symbol
+        if self.is_special():
+            card_description = Card.SPECIAL_CARDS[card_value]
+            print(f"{card_description} of {card_suit} {suit_symbol}")
+        else:
+            print(f"{card_value} of {card_suit} {suit_symbol}")

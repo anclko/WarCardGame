@@ -34,6 +34,7 @@ class Card:
             print(f"{card_value} of {card_suit} {suit_symbol}")
     
     # ---- SPECIAL CARD CONDITION ---- #
+    
     # cards are considered special if their value >= 11
     def is_special(self):
         return self._value >= 11

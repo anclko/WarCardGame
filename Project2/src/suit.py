@@ -8,3 +8,13 @@ class Suit:
         # description : clubs,diamonds,hearts,spades
         self._description = description
         self._symbol = Suit.SYMBOLS[description.lower()]
+    
+    # ---- GETTER ---- #
+
+    @property
+    def description(self):
+        return self._description
+
+    @property
+    def symbol(self):
+        return self.symbol

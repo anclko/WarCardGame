@@ -5,7 +5,7 @@ from suit import Suit
 
 class Deck:
 
-    SUITS = ("clubs", "diamonds", "hearts", "spades")
+    SUITS = ("Clubs", "Diamonds", "Hearts", "Spades")
 
     def __init__(self, is_empty=False):
         self._cards = []

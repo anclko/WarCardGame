@@ -51,7 +51,10 @@ class WarCardGame:
         pass
 
     def print_stats(self):
-        pass
+        print("\n----")
+        print(f"You have {self._player.deck.size} cards on your deck.")
+        print(f"Player 2 has {self._player2.deck.size} cards on its deck.")
+        print("----")
 
     def print_welcome_message(self):
         print("♣----------------------------♦")

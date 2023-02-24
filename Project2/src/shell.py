@@ -1,18 +1,35 @@
 import cmd
-import Game
+from Game import WarCardGame
+from deck import Deck
 
 class Shell(cmd.Cmd):
+
 
     intro = "Welcome to the game. Type help or ? to list commands.\n"
     prompt = '(game) '
     
-    def __init__(self):
-        super().__init__()
-        self.game = Game.Game()
     
     def do_Start(self,_):
-        self.game.ask_game_mode()
-    
+        '''Start The Game'''
+
+        player1 = input("Enter your name: ")
+        mode = input("Enter game mode (computer/human): ")
+        if mode.lower() == "human":
+            player2 = input("Enter opponent name: ")
+        else:
+            player2 = "Computer"
+
+        # Create a new deck and game instance
+        deck = Deck()
+        game = WarCardGame(player1, player2, deck)
+
+        # Start the game
+        game.print_welcome_message()
+        while not game.check_game_over():
+            game.print_stats()
+            game.start_battle()
+        
+
     def do_Exit(self,_):
         '''Exits the program'''
         print('Bye Bye!')

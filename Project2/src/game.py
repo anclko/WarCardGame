@@ -29,20 +29,20 @@ class WarCardGame:
         player_card = self._player.draw_card()
         player2_card = self._player2.draw_card()
 
-        print("Your Card:")
+        print(f"{self._player.name}'s card:")
         player_card.show()
 
-        print("\nPlayer 2 Card: ")
+        print(f"\n{self._player2.name}'s card: ")
         player2_card.show()
 
         winner = self.get_round_winner(player_card, player2_card)
         cards_won = self.get_cards_won(player_card, player2_card, warCards)
 
         if winner == WarCardGame.PLAYER:
-            print("\nYou won this round!")
+            print(f"\n{self._player.name} won this round!")
             self.add_cards_to_players(self._player, cards_won)
         elif winner == WarCardGame.PLAYER2:
-            print("\nPlayer 2 won this round.")
+            print(f"\n{self._player2.name} won this round.")
             self.add_cards_to_players(self._player2, cards_won)
         else:
             print("\nIt's a tie. This is war!")
@@ -69,6 +69,16 @@ class WarCardGame:
             thisPlayer.add_card(card)
 
     def start_war(self, battleCards):
+
+        if self._player.deck.size < 3:
+            print(f"Not enough cards to start war. {self._player2.name} wins.")
+            self.check_game_over()
+            return
+        elif self._player2.deck.size < 3:
+            print(f"Not enough cards to start war. {self._player.name} wins.")
+            self.check_game_over()
+            return
+
         player_cards = []
         player2_cards = []
 
@@ -88,21 +98,21 @@ class WarCardGame:
             print("===========================")
             print("|        Game Over        |")
             print("===========================")
-            print("Try again. Player 2 won.")
+            print(f"{self._player2.name} won! Congratulations.")
             return True
         elif self._player2.has_empty_deck():
             print("===========================")
             print("|        Game Over        |")
             print("===========================")
-            print(f"Excellent. You won, {self._player.name}! Congratulations.")
+            print(f"{self._player.name} won! Congratulations.")
             return True
         else:
             return False
 
     def print_stats(self):
         print("\n----")
-        print(f"You have {self._player.deck.size} cards on your deck.")
-        print(f"Player 2 has {self._player2.deck.size} cards on its deck.")
+        print(f"{self._player.name} has {self._player.deck.size} cards.")
+        print(f"{self._player2.name} has {self._player2.deck.size} cards.")
         print("----")
 
     def print_welcome_message(self):

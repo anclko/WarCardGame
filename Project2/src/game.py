@@ -10,6 +10,8 @@ class WarCardGame:
         self._deck = deck
         self.make_initial_decks()
 
+    # ---- DECK BUILDING FOR GAME ---- #
+    
     def make_initial_decks(self):
         self._deck.shuffle()
         self.make_deck(self._player)
@@ -19,6 +21,8 @@ class WarCardGame:
         for i in range(26):
             card = self._deck.draw()
             thisPlayer.add_card(card)
+
+    # ---- BATTLE GAME MODE ---- #
 
     def start_battle(self, warCards=None):
 
@@ -50,6 +54,8 @@ class WarCardGame:
 
         return winner
 
+    # ---- ACTIONS WHEN WINNING ROUND ---- #
+
     def get_round_winner(self, player_card, player2_card):
         if player_card.value > player2_card.value:
             return WarCardGame.PLAYER
@@ -68,6 +74,8 @@ class WarCardGame:
         for card in list_of_cards:
             thisPlayer.add_card(card)
 
+    # ---- WAR GAME MODE ---- #
+
     def start_war(self, battleCards):
         player_cards = []
         player2_cards = []
@@ -82,6 +90,8 @@ class WarCardGame:
         print("Six hidden cards: XXX XXX")
 
         self.start_battle(player_cards + player2_cards + battleCards)
+
+    # ---- PRINTING DIFFERENT MESSAGES ---- #
 
     def check_game_over(self):
         if self._player.has_empty_deck():

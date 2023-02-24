@@ -56,8 +56,9 @@ class WarCardGame:
     def get_cards_won(self, player_card, computer_card, previous_cards):
         pass
 
-    def add_cards_to_thisPlayer(self, thisPlayer, list_of_cards):
-        pass
+    def add_cards_to_players(self, thisPlayer, list_of_cards):
+        for card in list_of_cards:
+            thisPlayer.add_card(card)
 
     def start_war(self, battleCards):
         player_cards = []

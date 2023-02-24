@@ -49,12 +49,20 @@ class WarCardGame:
             self.start_war(cards_won)
 
         return winner
-        
-    def get_round_winner(self, player1_card, player2_card):
-        pass
 
-    def get_cards_won(self, player_card, computer_card, previous_cards):
-        pass
+    def get_round_winner(self, player_card, player2_card):
+        if player_card.value > player2_card.value:
+            return WarCardGame.PLAYER
+        elif player_card.value < player2_card.value:
+            return WarCardGame.PLAYER2
+        else:
+            return WarCardGame.TIE
+
+    def get_cards_won(self, player_card, player2_card, previous_cards):
+        if previous_cards:
+            return [player_card, player2_card] + previous_cards
+        else:
+            return [player_card, player2_card]
 
     def add_cards_to_players(self, thisPlayer, list_of_cards):
         for card in list_of_cards:
@@ -71,11 +79,11 @@ class WarCardGame:
             player2_card = self._player2.draw_card()
             player2_cards.append(player2_card)
 
-        print("Six hidden cards placed: XXX XXX")
+        print("Six hidden cards: XXX XXX")
 
         self.start_battle(player_cards + player2_cards + battleCards)
 
-    def game_over(self):
+    def check_game_over(self):
         if self._player.has_empty_deck():
             print("===========================")
             print("|        Game Over        |")
@@ -86,7 +94,7 @@ class WarCardGame:
             print("===========================")
             print("|        Game Over        |")
             print("===========================")
-            print(f"Congratulations! You won, {self._player.name}! Congratulations.")
+            print(f"Excellent. You won, {self._player.name}! Congratulations.")
             return True
         else:
             return False
@@ -98,6 +106,6 @@ class WarCardGame:
         print("----")
 
     def print_welcome_message(self):
-        print("♣----------------------------♦")
+        print("==============================")
         print("|        War Card Game       |")
-        print("♥----------------------------♠")
+        print("==============================")

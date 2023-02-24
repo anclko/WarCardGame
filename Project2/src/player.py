@@ -1,13 +1,8 @@
 class Player:
 
-    def __init__(self, name, deck, is_player2=False):
+    def __init__(self, name, deck):
         self.name = name
         self._deck = deck
-        self._is_player2 = is_player2
-
-    @property
-    def is_player2(self):
-        return self._is_player2
 
     @property
     def deck(self):

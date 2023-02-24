@@ -9,17 +9,16 @@ class WarCardGame:
         self._player2 = player2
         self._deck = deck
         self.make_initial_decks()
-    
-    def make_initial_deck(self):
-        """ Make decks based on game mode chosen"""
-        """ Code right now only works with player and PC mode"""
-        
+
+    def make_initial_decks(self):
         self._deck.shuffle()
         self.make_deck(self._player)
         self.make_deck(self._player2)
 
     def make_deck(self, thisPlayer):
-        pass
+        for i in range(26):
+            card = self._deck.draw()
+            thisPlayer.add_card(card)
 
     def battle(self, WarCards=None):
         pass

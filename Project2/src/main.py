@@ -1,11 +1,16 @@
 from deck import Deck
-from player import Player
+from game_player import Player
 from war_card_game import WarCardGame
 
-player = Player("AC", Deck(is_empty=True))
-player2 = Player("Player 2", Deck(is_empty=True), is_computer=True)
-deck = Deck()
+player = Player(input("What is your name?"), Deck(is_empty=True))
+mode = input("Enter game mode, PC(1) or other player (2)")
 
+if mode == "2":
+    player2 = Player(input("Enter name: "), Deck(is_empty=True))
+else:
+    player2 = Player("Computer", Deck(is_empty=True))
+
+deck = Deck()
 game = WarCardGame(player, player2, deck)
 
 game.print_welcome_message()

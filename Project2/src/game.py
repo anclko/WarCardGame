@@ -85,16 +85,16 @@ class WarCardGame:
 
     def check_game_over(self):
         if self._player.has_empty_deck():
-            print("===========================")
-            print("|        Game Over        |")
-            print("===========================")
+            print("♣==========================♥")
+            print("|         Game Over        |")
+            print("♦==========================♠")
             print("Try again. Player 2 won.")
             return True
         elif self._player2.has_empty_deck():
-            print("===========================")
-            print("|        Game Over        |")
-            print("===========================")
-            print(f"Excellent. You won, {self._player.name}! Congratulations.")
+            print("♣==========================♥")
+            print("|         Game Over        |")
+            print("♦==========================♠")
+            print(f"Congratulations! You won, {self._player.name}! Congratulations.")
             return True
         else:
             return False
@@ -106,6 +106,6 @@ class WarCardGame:
         print("----")
 
     def print_welcome_message(self):
-        print("==============================")
+        print("♣============================♥")
         print("|        War Card Game       |")
-        print("==============================")
+        print("♦============================♠")

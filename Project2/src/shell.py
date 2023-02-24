@@ -47,8 +47,4 @@ class Shell(cmd.Cmd):
         '''Change your Name'''
         pass
 
-    def do_Stats(self,_):
-        self.game.print_stats()
     
-if __name__ == "__main__":
-    Shell().cmdloop()

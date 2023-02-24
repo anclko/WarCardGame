@@ -34,6 +34,21 @@ class WarCardGame:
 
         print("\nPlayer 2 Card: ")
         player2_card.show()
+
+        winner = self.get_round_winner(player_card, player2_card)
+        cards_won = self.get_cards_won(player_card, player2_card, warCards)
+
+        if winner == WarCardGame.PLAYER:
+            print("\nYou won this round!")
+            self.add_cards_to_players(self._player, cards_won)
+        elif winner == WarCardGame.PLAYER2:
+            print("\nPlayer 2 won this round.")
+            self.add_cards_to_players(self._player2, cards_won)
+        else:
+            print("\nIt's a tie. This is war!")
+            self.start_war(cards_won)
+
+        return winner
         
     def get_round_winner(self, player1_card, player2_card):
         pass

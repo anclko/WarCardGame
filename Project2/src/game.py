@@ -20,9 +20,21 @@ class WarCardGame:
             card = self._deck.draw()
             thisPlayer.add_card(card)
 
-    def battle(self, WarCards=None):
-        pass
+    def start_battle(self, warCards=None):
 
+        print("==============================")
+        print("|   Let's Start The Battle    |")
+        print("==============================")
+
+        player_card = self._player.draw_card()
+        player2_card = self._player2.draw_card()
+
+        print("Your Card:")
+        player_card.show()
+
+        print("\nPlayer 2 Card: ")
+        player2_card.show()
+        
     def get_round_winner(self, player1_card, player2_card):
         pass
 

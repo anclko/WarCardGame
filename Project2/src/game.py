@@ -104,7 +104,7 @@ class WarCardGame:
             print("♣==========================♥")
             print("|         Game Over        |")
             print("♦==========================♠")
-            print(f"Congratulations! You won, {self._player.name}! Congratulations.")
+            print(f"Congratulations! You won, {self._player.name}!")
             return True
         else:
             return False

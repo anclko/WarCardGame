@@ -1,23 +1,24 @@
 import cmd
 from Game import WarCardGame
 from deck import Deck
+from Player import Player
 
 class Shell(cmd.Cmd):
 
 
     intro = "Welcome to the game. Type help or ? to list commands.\n"
-    prompt = '(game) '
+    prompt = '> '
     
     
     def do_Start(self,_):
         '''Start The Game'''
 
-        player1 = input("Enter your name: ")
+        player1 = Player(input("Enter your name: "), Deck(is_empty=True))
         mode = input("Enter game mode (computer/human): ")
-        if mode.lower() == "human":
-            player2 = input("Enter opponent name: ")
+        if mode.lower() == 'human':
+            player2 = Player(input("Enter opponent name: "), Deck(is_empty=True))
         else:
-            player2 = "Computer"
+            player2 = "Computer", Deck(is_empty=True)
 
         # Create a new deck and game instance
         deck = Deck()
@@ -48,3 +49,5 @@ class Shell(cmd.Cmd):
         pass
 
     
+if __name__ == "__main__":
+    Shell().cmdloop()

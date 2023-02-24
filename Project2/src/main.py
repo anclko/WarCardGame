@@ -1,24 +1,20 @@
 from deck import Deck
 from player import Player
-from game import WarCardGame
-
-"""
-RULES HERE
-"""
+from war_card_game import WarCardGame
 
 player = Player("AC", Deck(is_empty=True))
 player2 = Player("Player 2", Deck(is_empty=True), is_computer=True)
 deck = Deck()
-warGame = WarCardGame(player, player2, deck)
 
-warGame.print_welcome_message()
+game = WarCardGame(player, player2, deck)
 
-while not warGame.check_game_over():
-    warGame.start_battle()
-    warGame.print_stats()
+game.print_welcome_message()
 
-    choice = input("\nReady?\nPress Enter to continue. Enter X to stop.")
+while not game.check_game_over():
+    game.start_battle()
+    game.print_stats()
 
-    if choice.lower() == "x":
+    answer = input("\nReady?\nPress Enter to continue. Enter X to stop.")
+
+    if answer.lower() == "x":
         break
-

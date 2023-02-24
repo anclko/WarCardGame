@@ -59,8 +59,20 @@ class WarCardGame:
     def add_cards_to_thisPlayer(self, thisPlayer, list_of_cards):
         pass
 
-    def war(self, battleCards):
-        pass
+    def start_war(self, battleCards):
+        player_cards = []
+        player2_cards = []
+
+        for i in range(3):
+            player_card = self._player.draw_card()
+            player_cards.append(player_card)
+
+            player2_card = self._player2.draw_card()
+            player2_cards.append(player2_card)
+
+        print("Six hidden cards placed: XXX XXX")
+
+        self.start_battle(player_cards + player2_cards + battleCards)
 
     def game_over(self):
         if self._player.has_empty_deck():

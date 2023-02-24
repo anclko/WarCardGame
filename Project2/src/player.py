@@ -1,33 +1,26 @@
 class Player:
 
-    def __init__(self, name):
-        self._name = name
-        self._deck = []
-        self.win = 0
+    def __init__(self, name, deck, is_computer=False):
+        self.name = name
+        self._deck = deck
+        self._is_computer = is_computer
 
-    '''Setters'''
-    def set_name(self, name):
-        self._name = name
-
-    '''Getters'''
     @property
-    def get_name(self):
-        return self._name
-    
-    def win(self,player):
-        self.win += 1
+    def is_computer(self):
+        return self._is_computer
 
-    '''return T or F if deck is empty'''
+    @property
+    def deck(self):
+        return self._deck
+
     def has_empty_deck(self):
         return self._deck.size == 0
 
-
-    '''draw card if the deck is not empty'''
     def draw_card(self):
         if not self.has_empty_deck():
             return self._deck.draw()
+        else:
+            return None
 
-
-    '''Deck from Player class, Draw method from Deck class'''
     def add_card(self, card):
         self._deck.add(card)

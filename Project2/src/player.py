@@ -1,13 +1,13 @@
 class Player:
 
-    def __init__(self, name, deck, is_computer=False):
+    def __init__(self, name, deck, is_player2=False):
         self.name = name
         self._deck = deck
-        self._is_computer = is_computer
+        self._is_player2 = is_player2
 
     @property
-    def is_computer(self):
-        return self._is_computer
+    def is_player2(self):
+        return self._is_player2
 
     @property
     def deck(self):

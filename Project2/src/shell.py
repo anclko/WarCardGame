@@ -14,11 +14,11 @@ class Shell(cmd.Cmd):
         '''Start The Game'''
 
         player1 = Player(input("Enter your name: "), Deck(is_empty=True))
-        mode = input("Enter game mode (computer/human): ")
-        if mode.lower() == 'human':
+        mode = input("Enter game mode 1 for PC, for 2nd Player: ")
+        if mode == '2':
             player2 = Player(input("Enter opponent name: "), Deck(is_empty=True))
         else:
-            player2 = "Computer", Deck(is_empty=True)
+            player2 = Player("Computer", Deck(is_empty=True))
 
         # Create a new deck and game instance
         deck = Deck()
@@ -48,6 +48,4 @@ class Shell(cmd.Cmd):
         '''Change your Name'''
         pass
 
-    
-if __name__ == "__main__":
-    Shell().cmdloop()
+

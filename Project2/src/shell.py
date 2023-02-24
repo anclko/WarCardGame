@@ -27,9 +27,15 @@ class Shell(cmd.Cmd):
         # Start the game
         game.print_welcome_message()
         while not game.check_game_over():
-            game.print_stats()
+
             game.start_battle()
-        
+            game.print_stats()
+            
+            asnswer = input('press Enter to continue. Enter x to stop: ')
+            if asnswer.lower() == 'x':
+                break
+            elif asnswer == 'restart':
+                return self.do_restart(self)
 
     def do_Exit(self,_):
         '''Exits the program'''
@@ -47,5 +53,4 @@ class Shell(cmd.Cmd):
     def do_ChangeName(self,_):
         '''Change your Name'''
         pass
-
 

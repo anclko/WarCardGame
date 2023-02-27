@@ -6,11 +6,13 @@
 
 
 import random
+
 class Intelligence:
 
     def easy(self,deck):
-        return random.choice(deck)
+        return random.choice(deck._cards)
     
     
     def hard(self,deck):
-        return max(deck)
+        return max(deck._cards)
+    

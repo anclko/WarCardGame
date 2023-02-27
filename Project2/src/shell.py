@@ -2,11 +2,14 @@ import cmd
 from Game import WarCardGame
 from deck import Deck
 from Player import Player
+from Intelligence import Intelligence
 
 class Shell(cmd.Cmd):
 
+    i = Intelligence()
 
-    intro = "Welcome to the game. Type help or ? to list commands.\n"
+
+    intro = "Type help or ? to list commands.\n"
     prompt = '> '
     
     
@@ -19,10 +22,18 @@ class Shell(cmd.Cmd):
             player2 = Player(input("Enter opponent name: "), Deck(is_empty=True))
         else:
             player2 = Player("Computer", Deck(is_empty=True))
+                
 
         # Create a new deck and game instance
         deck = Deck()
         game = WarCardGame(player1, player2, deck)
+
+        if mode == '1':
+            defficulty = input('what level do you want the PC to be easy/hard? ')
+            if defficulty.lower() == 'easy':
+                self.i.easy(player2._deck)
+            else:
+                self.i.hard(player2._deck)
 
         # Start the game
         game.print_welcome_message()
@@ -30,7 +41,7 @@ class Shell(cmd.Cmd):
 
             game.start_battle()
             game.print_stats()
-            
+
             asnswer = input('press Enter to continue. Enter x to stop: ')
             if asnswer.lower() == 'x':
                 break
@@ -48,9 +59,5 @@ class Shell(cmd.Cmd):
     
     def do_Cheat(self,_):
         '''Win The Game By Cheating'''
-        pass
-
-    def do_ChangeName(self,_):
-        '''Change your Name'''
         pass
 

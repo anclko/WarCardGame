@@ -28,7 +28,6 @@ class Card:
     def is_special(self):
         return self._value >= 11
 
-    
     def __lt__(self, other_card):
         if self.value < other_card._value:
             return True

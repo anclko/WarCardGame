@@ -1,59 +1,67 @@
+"""Importing."""
+
 import cmd
-import game
+from Game import WarCardGame
+from deck import Deck
+from Player import Player
+from Intelligence import Intelligence
 
 
 class Shell(cmd.Cmd):
-    """Example of class with command actions to roll a dice."""
+    """Shell class."""
 
-    intro = "Welcome to the War Game! Type help or ? to list commands.\n"
-    prompt = "(game) "
+    i = Intelligence()
+    intro = "Type help or ? to list commands.\n"
+    prompt = '> '
 
-    def __init__(self):
-        """Init the object."""
-        super().__init__()
-        self.game = game.Game()
+    def do_Start(self, _):
+        """Start The Game."""
+        player1 = Player(input("Enter your name: "), Deck(is_empty=True))
+        mode = input("Enter game mode 1 for PC, 2 for 2nd Player: ")
+        if mode == '2':
+            p2 = Player(input("Enter opponent name: "), Deck(is_empty=True))
+        else:
+            p2 = Player("Computer", Deck(is_empty=True))
 
-    def do_start(self, _):
-        """Start the game with a new number."""
-        msg = (
-            "I am ready and is now thinking of a new secret number"
-            " between {} and {}."
-        )
-        self.game.start()
-        print(msg.format(self.game.low(), self.game.high()))
+        # Create a new deck and game instance
+        deck = Deck()
+        game = WarCardGame(player1, p2, deck)
 
-    def do_cheat(self, _):
-        """Cheat to view the secret number."""
-        print("Cheater... the number is {}.".format(self.game.cheat()))
+        if mode == '1':
+            defficulty = input('what level do you want easy/hard? ')
+            if defficulty.lower() != 'easy' and defficulty.lower() != 'hard':
+                defficulty = input('what level do you want easy/hard? ')
 
-    def do_guess(self, arg):
-        """Do a guess of a number."""
-        msg = "Missing argument on the number you are guessing. Try 'guess 42"
-        if not arg:
-            print(msg)
-            return
+            if defficulty.lower() == 'easy':
+                self.i.easy(p2._deck)
+            else:
+                self.i.hard(p2._deck)
 
-        a_number = int(arg)
-        try:
-            print("Your'e guess is -> {}".format(self.game.guess(a_number)))
-        except ValueError as error:
-            print(error)
+        # Start the game
+        game.print_welcome_message()
+        while not game.check_game_over():
 
-    def do_exit(self, _):
-        # pylint: disable=no-self-use
-        """Leave the game."""
-        print("Bye bye - see ya soon again")
+            game.start_battle()
+            game.print_stats()
+
+            asnswer = input('press Enter to continue. Enter x to stop: ')
+            if asnswer.lower() == 'x':
+                break
+            elif asnswer == 'restart':
+                return self.do_restart(self)
+            elif mode.lower() == '1':
+                if asnswer.lower() == 'cheat':
+                    return self.do_Cheat(self)
+
+    def do_Exit(self, _):
+        """Exit the program."""
+        print('Bye Bye!')
         return True
 
-    def do_quit(self, arg):
-        """Leave the game."""
-        return self.do_exit(arg)
+    def do_restart(self, _):
+        """Restart The Game."""
+        return self.do_Start(self)
 
-    def do_quitty(self, arg):
-        """Leave the game."""
-        return self.do_exit(arg)
-
-    def do_EOF(self, arg):
-        # pylint: disable=invalid-name
-        """Leave the game."""
-        return self.do_exit(arg)
+    def do_Cheat(self, _):
+        """Win The Game By Cheating."""
+        WarCardGame.cheat(self)

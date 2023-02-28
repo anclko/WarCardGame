@@ -1,27 +1,25 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+from deck import Deck
+from player import Player
+from game import WarCardGame
 
-"""
-Lets play a game of "Guess my number".
+player = Player(input("Enter Player 1's name: "), Deck(is_empty=True))
+mode = input("Enter game mode, PC(1) or other player (2): ")
 
-I will be thinking af a number between 1 and 100.
-You shall try to guess the number.
+if mode == "2":
+    player2 = Player(input("Enter Player 2's name: "), Deck(is_empty=True))
+else:
+    player2 = Player("Computer", Deck(is_empty=True))
 
-I will let you know if your guess is lower or higher than
-the number that I am thinking of.
+deck = Deck()
+game = WarCardGame(player, player2, deck)
 
-You have 5 guesses. Then you loose.
+game.print_welcome_message()
 
-"""
+while not game.check_game_over():
+    game.start_battle()
+    game.print_stats()
 
-import shell
+    answer = input("\nReady?\nPress Enter to continue. Enter X to stop.")
 
-
-def main():
-    """Execute the main program."""
-    print(__doc__)
-    shell.Shell().cmdloop()
-
-
-if __name__ == "__main__":
-    main()
+    if answer.lower() == "x":
+        break

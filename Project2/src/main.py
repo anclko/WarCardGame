@@ -1,25 +1,18 @@
-from deck import Deck
-from player import Player
-from game import WarCardGame
+"""
 
-player = Player(input("Enter Player 1's name: "), Deck(is_empty=True))
-mode = input("Enter game mode, PC(1) or other player (2): ")
+========================
+Welcome To The Card Game
+========================
 
-if mode == "2":
-    player2 = Player(input("Enter Player 2's name: "), Deck(is_empty=True))
-else:
-    player2 = Player("Computer", Deck(is_empty=True))
+"""
+import Shell
 
-deck = Deck()
-game = WarCardGame(player, player2, deck)
 
-game.print_welcome_message()
+def main():
+    """main class"""
+    print(__doc__)
+    Shell.Shell().cmdloop()
 
-while not game.check_game_over():
-    game.start_battle()
-    game.print_stats()
 
-    answer = input("\nReady?\nPress Enter to continue. Enter X to stop.")
-
-    if answer.lower() == "x":
-        break
+if __name__ == "__main__":
+    main()

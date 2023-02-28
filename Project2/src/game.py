@@ -119,3 +119,9 @@ class WarCardGame:
         print("==============================")
         print("|        War Card Game       |")
         print("==============================")
+        
+    def cheat(self):
+        print("===========================")
+        print("|        Game Over        |")
+        print("===========================")
+        print("You Won By Cheating!.")

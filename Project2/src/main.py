@@ -5,13 +5,13 @@ Welcome To The Card Game
 ========================
 
 """
-import Shell
+import shell
 
 
 def main():
     """main class"""
     print(__doc__)
-    Shell.Shell().cmdloop()
+    shell.Shell().cmdloop()
 
 
 if __name__ == "__main__":

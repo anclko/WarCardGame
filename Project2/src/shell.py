@@ -1,8 +1,8 @@
 import cmd
-from game import WarCardGame
+from Game import WarCardGame
 from deck import Deck
-from player import Player
-from intelligence import Intelligence
+from Player import Player
+from Intelligence import Intelligence
 
 
 class Shell(cmd.Cmd):
@@ -11,23 +11,23 @@ class Shell(cmd.Cmd):
 
     intro = "Type help or ? to list commands.\n"
     prompt = '> '
-
-    def do_Start(self, _):
+    
+    def do_Start(self,_):
         '''Start The Game'''
 
         player1 = Player(input("Enter your name: "), Deck(is_empty=True))
         mode = input("Enter game mode 1 for PC, for 2nd Player: ")
         if mode == '2':
-            player2 = Player(input("Player 2's name: "), Deck(is_empty=True))
+            player2 = Player(input("Enter opponent name: "), Deck(is_empty=True))
         else:
             player2 = Player("Computer", Deck(is_empty=True))
-
+                
         # Create a new deck and game instance
         deck = Deck()
         game = WarCardGame(player1, player2, deck)
 
         if mode == '1':
-            defficulty = input('Select difficulty: Easy/Hard? ')
+            defficulty = input('what level do you want the PC to be easy/hard? ')
             if defficulty.lower() == 'easy':
                 self.i.easy(player2._deck)
             else:
@@ -45,16 +45,19 @@ class Shell(cmd.Cmd):
                 break
             elif asnswer == 'restart':
                 return self.do_restart(self)
+            elif mode.lower() == '1':
+                if asnswer.lower() == 'cheat':
+                    return self.do_Cheat(self)
 
-    def do_Exit(self, _):
+    def do_Exit(self,_):
         '''Exits the program'''
         print('Bye Bye!')
         return True
-
-    def do_restart(self, _):
+    
+    def do_restart(self,_):
         '''Restarts The Game'''
         return self.do_Start(self)
-
-    def do_Cheat(self, _):
+    
+    def do_Cheat(self,_):
         '''Win The Game By Cheating'''
         WarCardGame.cheat(self)

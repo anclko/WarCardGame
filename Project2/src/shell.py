@@ -57,4 +57,4 @@ class Shell(cmd.Cmd):
 
     def do_Cheat(self, _):
         '''Win The Game By Cheating'''
-        pass
+        WarCardGame.cheat(self)

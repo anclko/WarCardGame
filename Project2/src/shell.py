@@ -28,10 +28,14 @@ class Shell(cmd.Cmd):
 
         if mode == '1':
             defficulty = input('what level do you want the PC to be easy/hard? ')
-            if defficulty.lower() == 'easy':
-                self.i.easy(player2._deck)
+            if defficulty.lower() != 'easy' or defficulty.lower() != 'hard':
+                defficulty = input('what level do you want the PC to be easy/hard? ')
             else:
-                self.i.hard(player2._deck)
+                if defficulty.lower() == 'easy':
+                    self.i.easy(player2._deck)
+                else:
+                    self.i.hard(player2._deck)
+
 
         # Start the game
         game.print_welcome_message()

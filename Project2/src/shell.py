@@ -1,10 +1,10 @@
 """Importing."""
 
 import cmd
-from Game import WarCardGame
+from game import WarCardGame
 from deck import Deck
-from Player import Player
-from Intelligence import Intelligence
+from player import Player
+from intelligence import Intelligence
 
 
 class Shell(cmd.Cmd):

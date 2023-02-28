@@ -1,5 +1,5 @@
 from deck import Deck
-from game_player import Player
+from player import Player
 from game import WarCardGame
 
 player = Player(input("Enter Player 1's name: "), Deck(is_empty=True))

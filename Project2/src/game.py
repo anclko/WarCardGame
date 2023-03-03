@@ -71,11 +71,11 @@ class WarCardGame:
     def start_war(self, battleCards):
 
         if self._player.deck.size < 3:
-            print(f"Not enough cards to start war. {self._player2.name} wins.")
+            print(f"Not enough cards to start war.")
             self.check_game_over()
             return
         elif self._player2.deck.size < 3:
-            print(f"Not enough cards to start war. {self._player.name} wins.")
+            print(f"Not enough cards to start war.")
             self.check_game_over()
             return
 
@@ -101,6 +101,18 @@ class WarCardGame:
             print(f"{self._player2.name} won! Congratulations.")
             return True
         elif self._player2.has_empty_deck():
+            print("===========================")
+            print("|        Game Over        |")
+            print("===========================")
+            print(f"{self._player.name} won! Congratulations.")
+            return True
+        elif self._player.deck.size < 3:
+            print("===========================")
+            print("|        Game Over        |")
+            print("===========================")
+            print(f"{self._player2.name} won! Congratulations.")
+            return True
+        elif self._player2.deck.size < 3:
             print("===========================")
             print("|        Game Over        |")
             print("===========================")

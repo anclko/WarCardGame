@@ -23,7 +23,7 @@ class WarCardGame:
     def start_battle(self, warCards=None):
 
         print("==============================")
-        print("|   Let's Start The Battle    |")
+        print("|   Let's Start The Battle   |")
         print("==============================")
 
         player_card = self._player.draw_card()
@@ -94,25 +94,13 @@ class WarCardGame:
         self.start_battle(player_cards + player2_cards + battleCards)
 
     def check_game_over(self):
-        if self._player.has_empty_deck():
+        if self._player.has_empty_deck() and len(self._warCards) == 0:
             print("===========================")
             print("|        Game Over        |")
             print("===========================")
             print(f"{self._player2.name} won! Congratulations.")
             return True
-        elif self._player2.has_empty_deck():
-            print("===========================")
-            print("|        Game Over        |")
-            print("===========================")
-            print(f"{self._player.name} won! Congratulations.")
-            return True
-        elif self._player.deck.size < 3:
-            print("===========================")
-            print("|        Game Over        |")
-            print("===========================")
-            print(f"{self._player2.name} won! Congratulations.")
-            return True
-        elif self._player2.deck.size < 3:
+        elif self._player2.has_empty_deck() and len(self._warCards) == 0:
             print("===========================")
             print("|        Game Over        |")
             print("===========================")

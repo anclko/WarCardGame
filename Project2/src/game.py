@@ -70,11 +70,11 @@ class WarCardGame:
 
     def start_war(self, battleCards):
 
-        if self._player.deck.size < 3:
+        if self._player.deck.size < 4:
             print(f"Not enough cards to start war.")
             self.check_game_over()
             return
-        elif self._player2.deck.size < 3:
+        elif self._player2.deck.size < 4:
             print(f"Not enough cards to start war.")
             self.check_game_over()
             return

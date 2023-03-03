@@ -1,4 +1,5 @@
 import unittest
+from src.game import WarCardGame
 from src.card import Card
 from src.suit import Suit
 

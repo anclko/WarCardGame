@@ -1,12 +1,12 @@
-from src.suit import Suit
-from src.game import WarCardGame
+from suit import Suit
+from game import WarCardGame
 import unittest
 
 class TestSuit(unittest.TestCase):
 
     def test_description(self):
-        suit = Suit("spade")
-        self.assertEqual(suit.description, "spade")
+        suit = Suit("spades")
+        self.assertEqual(suit.description, "spades")
 
     def test_symbol(self):
         suit = Suit("diamonds")
@@ -17,7 +17,7 @@ class TestSuit(unittest.TestCase):
         self.assertEqual(suit.description, "HEARTS")
 
     def test_unknownDescription(self):
-        with self.assertRaises(KeyError):
+        with self.assertRaises(KeyError): # <-- we dont have a method that raises an error, this is not needed
             Suit("unknown")
 
 if __name__ == '__main__':

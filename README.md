@@ -30,7 +30,15 @@ This is a general template for any Python project you want to start working on.
 
 ### Installing
 
-*Here you can add a description on how to install the project*
+1/ Install Git Bash on your computer
+2/ Press the 'Code' button and copy the link from the drop-down menu.
+3/ Open a Shell environment running Bash and write "git clone <link-to-repo>" (Link to repo is what you just copied in step 2)
+4/ Run cd Sustainable-Programming/ in the terminal, in the same directory where you cloned the repository.
+5/ Make sure you have 'Make' installed on your computer
+6/ Enter "make venv" to create a virtual environment.
+7/ Run source ".venv/bin/activate" if you are on a MAC operating system or source ".venv/Scripts/activateif" you are on Windows.
+8/ Enter "make install" to install the necessary modules in your venv.
+9/ Run make in your terminal.
 
 ### Usage
 

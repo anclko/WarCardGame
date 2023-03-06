@@ -1,7 +1,7 @@
-<h1 align="left">python-template</h1>
+<h1 align="left">Welcome To The War Game!</h1>
 
 <p align="left">
-  Here you should add general information about the project
+  You will find some crucial information about the project below.
   <br> 
 </p>
 

@@ -1,15 +1,14 @@
 """
-
-========================
-Welcome To The Card Game
-========================
-
+Class that consists of the command to run the game.
 """
-from source.src.shell import Shell
+from source.src import shell
 
 
 def main():
-    """main class"""
+    """ 
+    Runs the cmd loop to execute the program and also enables printing
+    out doc strings.
+    """
     print(__doc__)
     shell.Shell().cmdloop()
 

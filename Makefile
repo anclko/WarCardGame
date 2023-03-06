@@ -64,7 +64,7 @@ test:
 	$(call FOREACH,test)
 
 
-///////////////////////////////////////////
+/////////////////////////////////////////// ADIS STUFF
 
 
 ## Checks if virtual environment exists, if not then creates it

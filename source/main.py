@@ -1,7 +1,11 @@
 """
-Class that consists of the command to run the game.
+
+========================
+Welcome To The Card Game
+========================
+
 """
-from source.src import shell
+from source.src import Shell
 
 
 def main():
@@ -10,7 +14,7 @@ def main():
     out doc strings.
     """
     print(__doc__)
-    shell.Shell().cmdloop()
+    Shell.Shell().cmdloop()
 
 
 if __name__ == "__main__":

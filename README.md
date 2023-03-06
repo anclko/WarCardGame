@@ -43,7 +43,7 @@ This is a general template for any Python project you want to start working on.
 
 ## ✍️ Authors <a name = "authors"></a>
 
-- [@anclko](https://github.com/anclko)
-- [@IbMoh] (https://github.com/IbMoh)
+- @anclko - https://github.com/anclko
+- @IbMoh - https://github.com/IbMoh
 
 

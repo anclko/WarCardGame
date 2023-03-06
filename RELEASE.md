@@ -15,6 +15,6 @@ v1.1.0 (2023-02-24)
 * Extending the game to two players
 
 
-v1.0.0 (2023-02-20)(Pre-release)
+v1.0.0 (2023-02-20)
 ------------------------
 * First commit to project with base game.

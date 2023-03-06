@@ -3,6 +3,7 @@ class Player:
     def __init__(self, name, deck):
         self.name = name
         self._deck = deck
+        self.in_war = False
 
     @property
     def deck(self):

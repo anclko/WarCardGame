@@ -5,7 +5,7 @@ Welcome To The Card Game
 ========================
 
 """
-import shell
+from source.src.shell import Shell
 
 
 def main():

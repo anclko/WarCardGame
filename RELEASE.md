@@ -1,28 +1,20 @@
 Release history
 ========================
 
-Decide on a way how to handled your relaeases and version numbers. Document it here.
-
-For example like this...
-
-
-
-v2.0.0 (2022-02-05)
+v2.0.0 (2023-03-01)
 ------------------------
+* Release of functioning game with shell and cmd commands
 
-* Moved to a new location.
-
-
-
-v1.1.0 (2021-02-12)
+v1.2.0 (2023-02-27)
 ------------------------
+* Implemented cheating function
+* Implemented intelligence function
 
-* Enabling generating documentation from comments using pdoc and pydoc.
-* Enabling UML documentation using pyreverse.
-
-
-
-v1.0.0 (2021-02-12)
+v1.1.0 (2023-02-24)
 ------------------------
+* Extending the game to two players
 
-* First release, extracted from course material and further developed.
+
+v1.0.0 (2023-02-20)(Pre-release)
+------------------------
+* First commit to project with base game.

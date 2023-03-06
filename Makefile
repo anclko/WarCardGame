@@ -7,7 +7,7 @@ run:
 
 # Setup a venv and install #
 venv:
-	test -d $(VENV) || python3 -m venv $(VENV)
+	python -m venv .venv
 ## In the terminal:
 ## FOR WINDOWS: . .venv/Scripts/activate
 ## FOR MAC/LINUX: . .venv/bin/activate

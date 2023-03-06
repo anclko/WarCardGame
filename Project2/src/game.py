@@ -70,14 +70,17 @@ class WarCardGame:
 
     def start_war(self, battleCards):
 
-        if self._player.deck.size < 4:
-            print(f"Not enough cards to start war.")
+        if self._player.deck.size < 3:
+            print("Not enough cards to start war.")
             self.check_game_over()
             return
-        elif self._player2.deck.size < 4:
-            print(f"Not enough cards to start war.")
+        elif self._player2.deck.size < 3:
+            print("Not enough cards to start war.")
             self.check_game_over()
             return
+
+        self._player.in_war = True
+        self._player2.in_war = True
 
         player_cards = []
         player2_cards = []
@@ -94,13 +97,29 @@ class WarCardGame:
         self.start_battle(player_cards + player2_cards + battleCards)
 
     def check_game_over(self):
-        if self._player.has_empty_deck() and len(self._warCards) == 0:
+        if self._player.has_empty_deck():
+            print("===========================")
+            print("|        Game Over        |")
+            print("===========================")
+            print(f"{self._player2.name} won! Congratulations.")
+            self._player.in_war = False
+            self._player2.in_war = False
+            return True
+        elif self._player2.has_empty_deck():
+            print("===========================")
+            print("|        Game Over        |")
+            print("===========================")
+            print(f"{self._player.name} won! Congratulations.")
+            self._player.in_war = False
+            self._player2.in_war = False
+            return True
+        elif self._player.in_war and len(self._player2.deck) < 4:
             print("===========================")
             print("|        Game Over        |")
             print("===========================")
             print(f"{self._player2.name} won! Congratulations.")
             return True
-        elif self._player2.has_empty_deck() and len(self._warCards) == 0:
+        elif self._player2.in_war and len(self._player2.deck) < 4:
             print("===========================")
             print("|        Game Over        |")
             print("===========================")
@@ -119,7 +138,7 @@ class WarCardGame:
         print("==============================")
         print("|        War Card Game       |")
         print("==============================")
-        
+
     def cheat(self):
         print("===========================")
         print("|        Game Over        |")

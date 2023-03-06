@@ -113,13 +113,13 @@ class WarCardGame:
             self._player.in_war = False
             self._player2.in_war = False
             return True
-        elif self._player.in_war and len(self._player2.deck) < 4:
+        elif self._player.in_war and self._player2.deck.size < 4:
             print("===========================")
             print("|        Game Over        |")
             print("===========================")
             print(f"{self._player2.name} won! Congratulations.")
             return True
-        elif self._player2.in_war and len(self._player2.deck) < 4:
+        elif self._player2.in_war and self._player2.deck.size < 4:
             print("===========================")
             print("|        Game Over        |")
             print("===========================")

@@ -5,7 +5,7 @@
   <br> 
 </p>
 
-## 📝 Table of Contents
+## Table of Contents
 
 - [Table of Contents](#-table-of-contents)
 - [About ](#-about-)
@@ -16,13 +16,13 @@
 - [Built Using ](#️-built-using-)
 - [Authors ](#️-authors-)
 
-## 🧐 About <a name = "about"></a>
+## About <a name = "about"></a>
 
 This is a general template for any Python project you want to start working on.
 
 *Here you can add 1-2 paragraphs on information about the project*
 
-## 👨‍💻 Description <a name = "description"></a>
+## About The Game <a name = "description"></a>
 
 *Here you can add a description for your project and its purpose*
 
@@ -48,16 +48,16 @@ This is a general template for any Python project you want to start working on.
   
 9/ Run make in your terminal.
 
-### Usage
+### How To Run And Use The Project
 
-*Here you can add a description on how to run and use the project*
+* *
 
 
-## ⛏️ Built Using <a name = "built_using"></a>
+## Built Using <a name = "built_using"></a>
 
 *Here you can link the packages/modules/dependencies used to build your project*
 
-## ✍️ Authors <a name = "authors"></a>
+## Authors <a name = "authors"></a>
 
 - @anclko - https://github.com/anclko
 - @IbMoh - https://github.com/IbMoh

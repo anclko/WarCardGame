@@ -1,6 +1,7 @@
 """Importing."""
 
 import cmd
+import sys
 from game import WarCardGame
 from deck import Deck
 from player import Player
@@ -47,18 +48,21 @@ class Shell(cmd.Cmd):
             asnswer = input('press Enter to continue. Enter x to stop: ')
             if asnswer.lower() == 'x':
                 break
-            elif asnswer == 'restart':
+            elif asnswer.lower() == 'restart':
                 return self.do_restart(self)
             elif mode.lower() == '1':
                 if asnswer.lower() == 'cheat':
                     return self.do_Cheat(self)
+
+            if game.check_game_over():
+                sys.exit()
 
     def do_Exit(self, _):
         """Exit the program."""
         print('Bye Bye!')
         return True
 
-    def do_restart(self, _):
+    def do_Restart(self, _):
         """Restart The Game."""
         return self.do_Start(self)
 

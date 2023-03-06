@@ -5,81 +5,19 @@
 run:
 	python main.py
 
-# ---------------------------------------------------------
-# Setup a venv and install packages.
-#
-version:
-	@printf "Currently using executable: $(PYTHON)\n"
-	which $(PYTHON)
-	$(PYTHON) --version
-
+# Setup a venv and install #
 venv:
-	[ -d .venv ] || $(PYTHON) -m venv .venv
-	@printf "Now activate the Python virtual environment.\n"
-	@printf "On Unix and Mac, do:\n"
-	@printf ". .venv/bin/activate\n"
-	@printf "On Windows (bash terminal), do:\n"
-	@printf ". .venv/Scripts/activate\n"
-	@printf "Type 'deactivate' to deactivate.\n"
-
-install:
-	$(PYTHON) -m pip install -r requirements.txt
-
-installed:
-	$(PYTHON) -m pip list
-
-
-# ---------------------------------------------------------
-# Cleanup generated and installed files.
-#
-clean:
-	rm -f .coverage *.pyc
-	rm -rf __pycache__
-	rm -rf htmlcov
-
-clean-doc:
-	rm -rf doc
-
-clean-src:
-	$(call FOREACH,clean)
-
-clean-all: clean clean-doc clean-src
-	rm -rf .venv
-
-
-# ---------------------------------------------------------
-# Test all the code at once.
-#
-coverage:
-	$(
-pylint:
-	$(call FOREACH,pylint)
-
-flake8:
-	$(call FOREACH,flake8)
-
-lint: flake8 pylint
-
-test:
-	$(call FOREACH,test)
-
-
-/////////////////////////////////////////// ADIS STUFF
-
-
-## Checks if virtual environment exists, if not then creates it
-venv:
-		test -d $(VENV) || python3 -m venv $(VENV)
-## Now you should enter . .venv/Scripts/activate in terminal if you are on Windows
-## or . .venv/bin/activate if you are on Mac/Linux
-## Note that this will vary between terminals
+	test -d $(VENV) || python3 -m venv $(VENV)
+## In the terminal:
+## FOR WINDOWS: . .venv/Scripts/activate
+## FOR MAC/LINUX: . .venv/bin/activate
 
 
 
-## Displays which version the python interpreter is on
+## Check version
 version: check-virtual-env
-		@printf "Python executable version: "
-		@$(PYTHON) --version
+	@printf "Python executable version: "
+	@$(PYTHON) --version
 
 
 
@@ -88,20 +26,20 @@ check-virtual-env:
 
 
 
-## Installs pip packages based on package list in REQUIREMENTS.txt
+## Instals pip packages based on package list in REQUIREMENTS.txt
 install: check-virtual-env
 		pip install -q -r REQUIREMENTS.txt
 		$(PYTHON) -m pip install --upgrade -q pip
 
 
 
-## Shows installed pip packages
+## Display pip packages
 installed: check-virtual-env
 		$(PYTHON) -m pip list
 
 
 
-## Check pylint coverage
+## pylint coverage
 pylint: check-virtual-env
 		@for py in src/*.py; do echo "Linting $$py"; pylint -d C0103 -rn $$py; done
 		@for py in src/*/*.py; do echo "Linting $$py"; pylint -d C0103 -rn $$py; done
@@ -109,10 +47,12 @@ pylint: check-virtual-env
 
 
 
-## Check flake8 coverage
+## flake8 coverage
 flake8: check-virtual-env
 		@$(call MESSAGE,$@)
 		-flake8 --exclude=.svn,CVS,.bzr,.hg,.git,__pycache__,.tox,.nox,.eggs,*.egg,$(VENV),venv,*.pyc
+
+
 
 ## Check pylint and flake8 coverage
 lint: check-virtual-env 
@@ -173,7 +113,7 @@ pdoc-html: check-virtual-env
 
 
 
-## Generate UML diagrams from code
+## Converting UML diagrams from code
 uml-png: check-virtual-env
 		@$(call message, $@)
 		install -d doc/uml
@@ -185,13 +125,12 @@ uml-png: check-virtual-env
 
 
 
-## Create an index HTML file with both images
+## Create HTML file
 uml-html: check-virtual-env 
 		@echo "<h1>Class diagram</h1>" > doc/uml/index.html
 		@echo "<img src="classes.png">" >> doc/uml/index.html
 		@echo "<h1>Package diagram</h1>" >> doc/uml/index.html
 		@echo "<img src="packages.png">" >> doc/uml/index.html
-
 
 
 

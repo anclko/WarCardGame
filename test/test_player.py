@@ -1,5 +1,4 @@
 import unittest
-from src.game import WarCardGame
 from src.deck import Deck
 from src.card import Card
 from src.player import Player

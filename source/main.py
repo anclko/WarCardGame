@@ -5,7 +5,7 @@ from source.src import shell
 
 
 def main():
-    """ 
+    """
     Runs the cmd loop to execute the program and also enables printing
     out doc strings.
     """

@@ -28,7 +28,7 @@ check-virtual-env:
 
 ## Instals pip packages based on package list in REQUIREMENTS.txt
 install: check-virtual-env
-		pip install -q -r REQUIREMENTS.txt
+		pip install -r REQUIREMENTS.txt
 		$(PYTHON) -m pip install --upgrade -q pip
 
 

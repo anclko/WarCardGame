@@ -9,7 +9,7 @@ class TestSuit(unittest.TestCase):
     def test_description(self):
         """Test that the description of a suit is set correctly."""
         suit = Suit("spade")
-        self.assertEqual(suit.description, "spade")
+        self.assertEqual(suit.description, "spades")
 
     def test_symbol(self):
         """Test that the symbol of a suit is set correctly."""

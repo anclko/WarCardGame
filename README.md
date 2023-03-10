@@ -71,6 +71,7 @@ you can use these commands:
 13. 'make unittest': Creates unittests
 14. 'make coverage': Creates Coverage tests
 15. 'make test': Creates lint coverage
+16,17,18 and 19 currently don't work as intended.
 16. 'make pydoc': Creates documintation folder
 17. 'make pdoc': Creates html and documintation
 18. 'make pyreverse': Creates umls of packages and classes

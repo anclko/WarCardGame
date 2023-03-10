@@ -76,7 +76,7 @@ class Card:
         return self._value >= 11
 
     def __lt__(self, other_card):
-        """Overrides the < operator to compare two Card based on their values.
+        """Override the < operator to compare two Card based on their values.
 
         Parameters:
         other_card (Card): The other Card object to compare to.
@@ -91,7 +91,7 @@ class Card:
             return False
 
     def __gt__(self, other_card):
-        """Overrides the > operator to compare two Card
+        """Override the > operator to compare two Card
         objects based on their values.
 
         Parameters:

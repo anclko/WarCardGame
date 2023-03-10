@@ -1,4 +1,9 @@
-"""Testing intelligence class."""
+"""
+    This module contains a test case for the Intelligence class of the game module.
+
+    It tests the functionality of the easy and hard methods of the Intelligence class.
+
+"""
 import unittest
 from game.card import Card
 from game.deck import Deck
@@ -8,7 +13,7 @@ i = Intelligence()
 
 
 class IntelligenceTestCase(unittest.TestCase):
-    """Doc."""
+    """Test case class for the Intelligence class."""
 
     def test_easy(self):
         """Test the easy method of the Intelligence class."""
@@ -31,5 +36,5 @@ class IntelligenceTestCase(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    """Doc."""
+    """For running in vscode."""
     unittest.main()

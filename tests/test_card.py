@@ -1,4 +1,17 @@
-"""Doc."""
+"""
+This module contains unit tests for the Card class.
+
+The Card class represents a playing card in a deck of cards. It has a suit and a value. These unit tests verify the correctness of the Card class and its methods.
+
+The tests in this module include:
+
+. test_value: tests that a Card object's value is set correctly
+. test_suit: tests that a Card object's suit is set correctly
+. test_special: tests that a special card is marked as special and a non-special card is not
+. test_lower: tests that a card with a lower value is less than a card with a higher value
+. test_greater: tests that a card with a higher value is greater than a card with a lower value
+
+"""
 
 
 import unittest
@@ -7,7 +20,11 @@ from game.suit import Suit
 
 
 class TestCard(unittest.TestCase):
-    """Doc."""
+    """
+    
+    Unit tests for the Card class.
+    
+    """
 
     def test_value(self):
         """Create a Card object and assert it's value"""

@@ -1,137 +1,162 @@
+#!/usr/bin/env make
+
+# Change this to be your variant of the python command
+# Set the env variable PYTHON to another value if needed
+# PYTHON=python3 make version
+
+PYTHON ?= python # python3 py
+
+# Print out colored action message
+MESSAGE = printf "\033[32;01m---> $(1)\033[0m\n"
+
+all:
+
+run:
+		@$(PYTHON) -u -m game.main
+
+# ---------------------------------------------------------
+# Check the current python executable.
+#
+version:
+	@printf "Currently using executable: $(PYTHON)\n"
+	which $(PYTHON)
+	$(PYTHON) --version
+
+
 # ---------------------------------------------------------
 # Setup a venv and install packages.
 #
-
-run:
-	python main.py
-
-# Setup a venv and install #
 venv:
-	python -m venv .venv
-## In the terminal:
-## FOR WINDOWS: . .venv/Scripts/activate
-## FOR MAC/LINUX: . .venv/bin/activate
+	[ -d .venv ] || $(PYTHON) -m venv .venv
+	@printf "Now activate the Python virtual environment.\n"
+	@printf "On Unix and Mac, do:\n"
+	@printf ". .venv/bin/activate\n"
+	@printf "On Windows (bash terminal), do:\n"
+	@printf ". .venv/Scripts/activate\n"
+	@printf "Type 'deactivate' to deactivate.\n"
+
+install:
+	$(PYTHON) -m pip install -r requirements.txt
+
+installed:
+	$(PYTHON) -m pip list
 
 
-
-## Check version
-version: check-virtual-env
-	@printf "Python executable version: "
-	@$(PYTHON) --version
-
-
-
-check-virtual-env:
-		@echo virtual-env: $${VIRTUAL_ENV?"Please source your .venv/"}
-
-
-
-## Instals pip packages based on package list in requirements.txt
-install: check-virtual-env
-		pip install -r requirements.txt
-
-
-
-## Display pip packages
-installed: check-virtual-env
-		$(PYTHON) -m pip list
-
-
-
-## pylint coverage
-pylint: check-virtual-env
-		@for py in source/*.py; do echo "Linting $$py"; pylint -d C0103 -rn $$py; done
-		@for py in source/*/*.py; do echo "Linting $$py"; pylint -d C0103 -rn $$py; done
-		@for py in source/*/*/*.py; do echo "Linting $$py"; pylint -d C0103 -rn $$py; done
-
-
-
-## flake8 coverage
-flake8: check-virtual-env
-		@$(call MESSAGE,$@)
-		-flake8 --exclude=.svn,CVS,.bzr,.hg,.git,__pycache__,.tox,.nox,.eggs,*.egg,$(VENV),venv,*.pyc
-
-
-
-## Check pylint and flake8 coverage
-lint: check-virtual-env 
-		$(MAKE) pylint
-		$(MAKE) flake8
-
-
-
-## Clear temporary interpeter cache and virtual environment files
+# ---------------------------------------------------------
+# Cleanup generated and installed files.
+#
 clean:
-		rm -rf source/__pycache__
-		rm -rf source/*/__pycache__
-		rm -rf source/*/*/__pycache__
-		rm -rf source/*/*/*/__pycache__
-		rm -rf source/*.pyc
-		rm -rf source/*/*.pyc
-		rm -rf source/*/*/*.pyc
-		rm -rf source/*/*/*/*.pyc
-		rm -rf $(VENV)
+	@$(call MESSAGE,$@)
+	rm -f .coverage *.pyc
+	rm -rf __pycache__
+	rm -rf htmlcov
+
+clean-doc: clean
+	@$(call MESSAGE,$@)
+	rm -rf doc
+
+clean-all: clean clean-doc
+	@$(call MESSAGE,$@)
+	rm -rf .venv
+
+
+# ---------------------------------------------------------
+# Work with static code linters.
+#
+pylint:
+	@$(call MESSAGE,$@)
+	-cd game && $(PYTHON) -m pylint *.py
+
+flake8:
+	@$(call MESSAGE,$@)
+	-flake8
+
+lint: flake8 pylint
+
+
+# ---------------------------------------------------------
+# Work with codestyle.
+#
+black:
+	@$(call MESSAGE,$@)
+	 $(PYTHON) -m black game/ tests/
+
+codestyle: black
+
+
+# ---------------------------------------------------------
+# Work with unit test and code coverage.
+#
+unittest:
+	@$(call MESSAGE,$@)
+	 $(PYTHON) -m unittest discover
+
+coverage:
+	@$(call MESSAGE,$@)
+	coverage run -m unittest discover
+	coverage html
+	coverage report -m
+
+test: lint coverage
+
+
+# ---------------------------------------------------------
+# Work with generating documentation.
+#
+.PHONY: pydoc
+pydoc:
+	@$(call MESSAGE,$@)
+	install -d doc/pydoc
+	$(PYTHON) -m pydoc -w game/*.py
+	mv *.html doc/pydoc
+
+pdoc:
+	@$(call MESSAGE,$@)
+	pdoc --force --html --output-dir doc/pdoc game/*.py
+
+pyreverse:
+	@$(call MESSAGE,$@)
+	install -d doc/pyreverse
+	pyreverse game/*.py
+	dot -Tpng classes.dot -o doc/pyreverse/classes.png
+	dot -Tpng packages.dot -o doc/pyreverse/packages.png
+	rm -f classes.dot packages.dot
+
+doc: pdoc pyreverse #pydoc sphinx
 
 
 
-## Clears documentation files
-clean-doc:
-		rm -rf ./doc
+# ---------------------------------------------------------
+# Calculate software metrics for your project.
+#
+radon-cc:
+	@$(call MESSAGE,$@)
+	radon cc --show-complexity --average game
+
+radon-mi:
+	@$(call MESSAGE,$@)
+	radon mi --show game
+
+radon-raw:
+	@$(call MESSAGE,$@)
+	radon raw game
+
+radon-hal:
+	@$(call MESSAGE,$@)
+	radon hal game
+
+cohesion:
+	@$(call MESSAGE,$@)
+	cohesion --directory game
+
+metrics: radon-cc radon-mi radon-raw radon-hal cohesion
 
 
 
-## Clear coverage files
-clean-cov:
-		rm -rf htmlcov
+# ---------------------------------------------------------
+# Find security issues in your project.
+#
+bandit:
+	@$(call MESSAGE,$@)
+	bandit --recursive game
 
-
-
-## Clear all generated files
-clean-all: clean clean-doc clean-cov
-
-
-
-## Generate documentation in an HTML file using pdoc
-pdoc: check-virtual-env
-		@$(call message, $@)
-		pdoc -o doc/api ./source/*.py ./source/*/*.py ./source/*/*/*.py
-
-
-
-## Open documentation's index html file in browser
-pdoc-html: check-virtual-env
-	@(\
-		if [[ $(USER_OS) == "WINDOWS" ]]; then \
-			start doc/api/index.html & \
-		elif [[ $(USER_OS) == "DARWIN" ]]; then	\
-			open doc/api/index.html &	\
-		elif [[ $(USER_OS) == "LINUX" ]]; then	\
-			xdg-open doc/api/index.html & \
-		fi	\
-	)
-
-
-
-## Converting UML diagrams from code
-uml-png: check-virtual-env
-		@$(call message, $@)
-		install -d doc/uml
-		pyreverse ./source/*.py
-		pyreverse ./source/src/*.py ./source/test/*.py
-		dot -Tpng classes.dot -o doc/uml/classes.png
-		dot -Tpng packages.dot -o doc/uml/packages.png
-		rm -f classes.dot packages.dot
-
-
-
-## Create HTML file
-uml-html: check-virtual-env 
-		@echo "<h1>Class diagram</h1>" > doc/uml/index.html
-		@echo "<img source="classes.png">" >> doc/uml/index.html
-		@echo "<h1>Package diagram</h1>" >> doc/uml/index.html
-		@echo "<img source="packages.png">" >> doc/uml/index.html
-
-
-
-## Generates UML diagrams and creates an .html file containing them
-uml: uml-png uml-html

@@ -1,4 +1,4 @@
-"""Doc."""
+"""Testing intelligence class."""
 import unittest
 from game.card import Card
 from game.deck import Deck
@@ -11,7 +11,7 @@ class IntelligenceTestCase(unittest.TestCase):
     """Doc."""
 
     def test_easy(self):
-        """Doc."""
+        """Test the easy method of the Intelligence class."""
         deck = Deck()
         deck._cards = [Card("Spades", "Q"), Card("Diamonds", "4")]
         card = i.easy(deck)
@@ -19,7 +19,7 @@ class IntelligenceTestCase(unittest.TestCase):
         self.assertTrue(card, deck._cards)
 
     def test_hard(self):
-        """Doc."""
+        """Test the hard method of the Intelligence class."""
         deck = Deck()
         LowerValueCard = Card("Hearts", "7")
         HigherValueCard = Card("Clubs", "K")
@@ -30,6 +30,6 @@ class IntelligenceTestCase(unittest.TestCase):
         self.assertEqual(card, HigherValueCard)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     """Doc."""
     unittest.main()

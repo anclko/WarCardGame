@@ -1,4 +1,16 @@
-"""Importing."""
+    """
+    Test case class for testing the `Deck` class.
+
+    This test case includes four test methods that test the
+    functionalities of the `Deck` class.
+
+    Methods:
+    test_build -- Test the `build` method of the `Deck` class.
+    test_shuffle -- Test the `shuffle` method of the `Deck` class.
+    test_draw -- Test the `draw` method of the `Deck` class.
+    test_add -- Test the `add` method of the `Deck` class.
+    
+    """
 
 
 import unittest

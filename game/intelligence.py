@@ -1,22 +1,36 @@
-"""Doc."""
-
-
+"""Class Intelligence."""
 import random
-
-# CPU side and cheating implementation in this
-# When the computer is playing, it should have some type of
-# intelligence for playing the game. There might be several
-# settings för the level of intelligence for the computer playing.
-# These should be configurable by the user while playing.
 
 
 class Intelligence:
-    """Doc."""
+    """class representing levels of intelligence for the PC mode.
+
+    Attributes:
+    None
+
+    Methods:
+    easy(deck): Returns random card from the deck.
+    hard(deck): Returns the highest-value cards in the deck.
+    """
 
     def easy(self, deck):
-        """Doc."""
+        """Select a random card from the deck.
+
+        Args:
+        deck (Deck): The deck of cards to choose from.
+
+        Returns:
+        The randomly selected card from the deck.
+        """
         return random.choice(deck._cards)
 
     def hard(self, deck):
-        """Doc."""
+        """Select the highest-value card from the deck.
+
+        Args:
+        deck (Deck): The deck of cards to choose from.
+
+        Returns:
+        The card with the highest value in the deck.
+        """
         return max(deck._cards)

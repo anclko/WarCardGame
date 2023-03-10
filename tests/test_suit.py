@@ -1,4 +1,4 @@
-"""Doc."""
+"""Testing suit class."""
 from game.suit import Suit
 import unittest
 
@@ -7,25 +7,25 @@ class TestSuit(unittest.TestCase):
     """Doc."""
 
     def test_description(self):
-        """Doc."""
+        """Test that the description of a suit is set correctly."""
         suit = Suit("spade")
         self.assertEqual(suit.description, "spade")
 
     def test_symbol(self):
-        """Doc."""
+        """Test that the symbol of a suit is set correctly."""
         suit = Suit("diamonds")
         self.assertEqual(suit.symbol, "♦")
 
     def test_upperdescription(self):
-        """Doc."""
+        """Test that the description of a suit is case-insensitive."""
         suit = Suit("HEARTS")
         self.assertEqual(suit.description, "HEARTS")
 
     def test_unknownDescription(self):
-        """Doc."""
+        """Test error raised when creating a Suit with unknown description."""
         with self.assertRaises(KeyError):
             Suit("unknown")
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

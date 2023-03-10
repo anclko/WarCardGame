@@ -91,8 +91,7 @@ class Card:
             return False
 
     def __gt__(self, other_card):
-        """Override the > operator to compare two Card
-        objects based on their values.
+        """Override the > operator to compare two Card objects based on values.
 
         Parameters:
         other_card (Card): The other Card object to compare to.

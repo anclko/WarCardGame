@@ -1,4 +1,4 @@
-"""Composed of:
+"""Composed of:.
 
 test_card.py
 test_deck.py

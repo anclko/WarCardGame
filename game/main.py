@@ -1,4 +1,10 @@
-"""Class Main."""
+"""
+
+========================
+Welcome To The Card Game
+========================
+
+"""
 from game.shell import Shell
 
 

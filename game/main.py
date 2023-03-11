@@ -1,9 +1,8 @@
-"""
+"""Start of game.
 
 ========================
 Welcome To The Card Game
 ========================
-
 """
 from game.shell import Shell
 

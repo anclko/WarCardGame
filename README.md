@@ -25,7 +25,7 @@ If the turned up cards are equal there is a war.
 The tied cards stay on the table and both players play the next card 
 of their pile face down and then another card face-up. 
 Whoever has the higher of the new face-up cards wins the war and 
-adds all six cards face-down to the bottom of their packet. 
+adds all cards won to the bottom of their packet. 
 If the new face-up cards are equal as well, the war continues: each player puts 
 another card face-down and one face-up. The war goes on like this as 
 long as the face-up cards continue to be equal. As soon as they are different 

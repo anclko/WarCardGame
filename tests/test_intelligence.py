@@ -1,8 +1,6 @@
-"""
-    This module contains a test case for the Intelligence class of the game module.
+"""This module contains test case for the Intelligence class of the game.
 
-    It tests the functionality of the easy and hard methods of the Intelligence class.
-
+It tests functionality of the easy and hard methods of the Intelligence class.
 """
 import unittest
 from game.card import Card

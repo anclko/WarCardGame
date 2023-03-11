@@ -1,4 +1,4 @@
-"""Class Deck"""
+"""Class Deck."""
 from game.card import Card
 from game.suit import Suit
 import random

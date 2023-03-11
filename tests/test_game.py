@@ -25,7 +25,6 @@ Tests:
 - test_check_game_over_not_enough_cards_player2: tests if the game is
   over when player2 does not have enough cards for a war
 - test_print_stats: tests if the print_stats() method works properly.
-
 """
 
 
@@ -35,18 +34,19 @@ from game.player import Player
 from game.card import Card
 from game.deck import Deck
 
+
 class TestWarCardGame(unittest.TestCase):
     """Unittest test case for the WarCardGame class."""
-    
-    
+
     def setUp(self):
+        """Seting up objects."""
         self.player1 = Player("Ibrahim", Deck(is_empty=True))
         self.player2 = Player("Anne-Clair :)", Deck(is_empty=True))
         self.deck = Deck()
         self.game = WarCardGame(self.player1, self.player2, self.deck)
 
     def test_get_round_winner(self):
-        """Testing round winner"""
+        """Testing round winner."""
         card1 = Card("Hearts", 5)
         card2 = Card("Diamonds", 8)
         card3 = Card("Spades", 2)
@@ -83,6 +83,6 @@ class TestWarCardGame(unittest.TestCase):
         """Testing if the game is over."""
         self.assertFalse(self.game.check_game_over())
 
+
 if __name__ == '__main__':
     unittest.main()
-

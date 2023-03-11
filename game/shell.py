@@ -97,11 +97,11 @@ class Shell(cmd.Cmd):
                     if dif_lvl != "1" and dif_lvl != "2":
                         raise ValueError("Invalid choice. Try again!")
                     break
-                except ValueError as e:
-                    print(e)
+                except ValueError as error:
+                    print(error)
 
             if dif_lvl.lower() == 1:
-                self.i.normal(p_2._deck)
+                self.i.easy(p_2._deck)
             else:
                 self.i.hard(p_2._deck)
 

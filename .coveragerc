@@ -1,0 +1,11 @@
+[run]
+omit =
+    test_*.py
+    test/*
+    */__init__.py
+
+[report]
+omit =
+    test_*.py
+    test/*
+    */__init__.py

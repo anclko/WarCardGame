@@ -1,8 +1,7 @@
-"""
-    Testing the Player class.
+"""Testing the Player class.
 
-    This module contains unit tests for the Player class. The Player class represents a player in a card game.
-
+This module contains unit tests for the Player class.
+The Player class represents a player in a card game.
 """
 import unittest
 from game.deck import Deck
